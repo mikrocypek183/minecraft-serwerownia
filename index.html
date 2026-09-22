@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASE CONTROL SYSTEM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="scanlines"></div>
+
+    <!-- LOGIN -->
+    <section id="loginScreen" class="screen active">
+        <div class="login-card">
+            <div class="brand-mark">◈</div>
+            <div class="eyebrow">SECURE FACILITY TERMINAL</div>
+            <h1>BASE CONTROL</h1>
+            <div class="status-line"><span class="status-dot"></span> SYSTEM STANDBY</div>
+
+            <form id="loginForm">
+                <label for="username">USER</label>
+                <input id="username" type="text" value="admin" autocomplete="username" spellcheck="false">
+
+                <label for="password">PASSWORD</label>
+                <input id="password" type="password" autocomplete="current-password" autofocus>
+
+                <button type="submit" class="primary-btn">AUTHENTICATE <span>→</span></button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+
+            <div class="classification">AUTHORIZED PERSONNEL ONLY // CLASSIFIED</div>
+        </div>
+    </section>
+
+    <!-- BOOT -->
+    <section id="bootScreen" class="screen">
+        <div class="boot-window">
+            <div class="boot-header">
+                <span>BASE CONTROL OS</span>
+                <span>BOOT SEQUENCE</span>
+            </div>
+            <div class="boot-title">INITIALIZING CENTRAL SYSTEM</div>
+            <div id="bootLog" class="boot-log"></div>
+            <div class="progress-track">
+                <div id="bootProgress" class="progress-bar"></div>
+            </div>
+            <div class="boot-footer">
+                <span id="bootPercent">0%</span>
+                <span>SECURE MODE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN APP -->
+    <section id="mainScreen" class="screen app-screen">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-icon">◈</div>
+                <div>
+                    <div class="brand-name">BASE CONTROL</div>
+                    <div class="brand-subtitle">CENTRAL SYSTEM MANAGEMENT</div>
+                </div>
+            </div>
+
+            <div class="top-status">
+                <span class="status-dot"></span>
+                ALL SYSTEMS NOMINAL
+            </div>
+
+            <button id="logoutBtn" class="ghost-btn">LOCK TERMINAL</button>
+        </header>
+
+        <main class="dashboard">
+            <div class="dashboard-heading">
+                <div>
+                    <div class="eyebrow">FACILITY NETWORK</div>
+                    <h2>System Management</h2>
+                    <p>Register and monitor connected facility systems.</p>
+                </div>
+                <div class="clock-panel">
+                    <span id="clock">00:00:00</span>
+                    <small>LOCAL TIME</small>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <span>REGISTERED</span>
+                    <strong id="systemCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span>NETWORK</span>
+                    <strong class="online">ONLINE</strong>
+                </div>
+                <div class="stat-card">
+                    <span>SECURITY</span>
+                    <strong class="online">ARMED</strong>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <span>REGISTERED SYSTEMS</span>
+                <span id="emptyHint">NO SYSTEMS REGISTERED</span>
+            </div>
+
+            <div id="systemGrid" class="system-grid"></div>
+
+            <button id="registerBtn" class="register-card">
+                <span class="plus">+</span>
+                <span>
+                    <strong>REGISTER SYSTEM</strong>
+                    <small>Add a new aircraft, vehicle, machine or facility system</small>
+                </span>
+                <span class="arrow">→</span>
+            </button>
+        </main>
+
+        <footer class="footer">
+            <span>BASE CONTROL OS v1.0</span>
+            <span>SECURE REDSTONE NETWORK</span>
+            <span>CLASSIFIED</span>
+        </footer>
+    </section>
+
+    <!-- REGISTER MODAL -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div>
+                    <div class="eyebrow">SYSTEM REGISTRATION</div>
+                    <h3>Register New System</h3>
+                </div>
+                <button id="closeModalBtn" class="close-btn">×</button>
+            </div>
+
+            <form id="systemForm">
+                <label for="systemName">SYSTEM NAME</label>
+                <input id="systemName" type="text" maxlength="32" placeholder="e.g. AIRCRAFT-01" required>
+
+                <label for="systemType">SYSTEM TYPE</label>
+                <select id="systemType" required>
+                    <option value="" disabled selected>Select system type...</option>
+                    <option value="aircraft">Aircraft</option>
+                    <option value="car">Car</option>
+                    <option value="military">Military Vehicle</option>
+                    <option value="machine">Machine</option>
+                    <option value="utility">Utility Vehicle</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <div id="formError" class="error-message"></div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelBtn" class="secondary-btn">CANCEL</button>
+                    <button type="submit" class="primary-btn">REGISTER SYSTEM →</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
